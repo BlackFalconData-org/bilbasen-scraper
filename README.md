@@ -1,0 +1,340 @@
+# Bilbasen Scraper — Car Listings from Denmark's Largest Marketplace
+
+Extract structured car listings from [bilbasen.dk](https://www.bilbasen.dk) — Denmark's largest used car marketplace with 50,000+ active listings.
+
+Get clean JSON with price, specs, images, seller info, geo coordinates, and full descriptions. Search by make, model, year range, and price range — or provide any bilbasen.dk search URL.
+
+Built for car market analytics, price monitoring, dealership intelligence, and automotive data pipelines.
+
+**[Run on Apify →](https://apify.com/blackfalcondata/bilbasen)**
+
+---
+
+## Key features
+
+🔍 **Smart search with filters**
+
+- Search by make, model, year range, and price range — no need to build URLs manually
+- Smart input resolution: "VW" → "Volkswagen", "Mercedes" → "Mercedes-Benz"
+- Or provide any bilbasen.dk search URL for full control
+
+🚗 **Rich vehicle data**
+
+- Make, model, variant, year, mileage, fuel type, gear type, horsepower, color, doors
+- Price from search page + parsed price from detail page
+- Full listing description with feature extraction
+
+📍 **Geo-ready output**
+
+- Latitude, longitude, city, zip code, and region for every listing
+- Ready for map visualizations and geographic analysis
+
+🔄 **Incremental mode**
+
+- Only get new or changed listings since your last run
+- Content hash per listing — no duplicates, no re-processing
+- Ideal for scheduled monitoring and price tracking
+
+⚡ **Compact output for AI agents**
+
+- 10-field compact mode optimized for MCP and AI agent workflows
+- Description truncation to control output size
+- Deterministic, consistent field naming across all items
+
+📊 **Detail enrichment**
+
+- Optional detail page fetching for full specs, seller info, and images
+- Flat top-level fields for easy consumption + full nested data for advanced use cases
+- WAF-hardened with automatic retries and session management
+
+---
+
+## Use cases
+
+**Car price monitoring**
+Track price changes on specific models over time. Use incremental mode to detect price drops on listings you're watching. Build alerts when a target car hits your price range.
+
+**Dealership intelligence**
+Collect dealer inventory, pricing strategy, and geographic coverage. Identify which dealers carry specific makes and models. Monitor competitor pricing across regions.
+
+**Market analytics**
+Analyze the Danish used car market: price distributions by make/model/year, regional price differences, fuel type trends, average time on market. Feed into dashboards or data warehouses.
+
+**Lead generation for automotive services**
+Find car owners and dealers by location, car type, and price range. Target high-value listings for financing, insurance, or service offers.
+
+**Academic & economic research**
+Download structured datasets for research on consumer behavior, depreciation curves, electric vehicle adoption, and regional economic indicators.
+
+**Data pipeline integration**
+Feed bilbasen data into BigQuery, Snowflake, or your data lake. Use incremental mode to get only new records — no re-processing of old listings.
+
+---
+
+## Example output
+
+```json
+{
+    "url": "https://www.bilbasen.dk/brugt/bil/audi/a4/35-tdi-prestige-avant-s-tr-5d/6794104",
+    "portalUrl": "https://www.bilbasen.dk/brugt/bil/audi/a4/35-tdi-prestige-avant-s-tr-5d/6794104",
+    "title": "Audi A4 35 TDi Prestige Avant S-tr. 5d",
+    "price": 329800,
+    "priceAmount": 329800,
+    "priceText": "329.800 kr.",
+    "make": "Audi",
+    "model": "A4",
+    "variant": "35 TDi Prestige Avant S-tr. 5d",
+    "year": 2021,
+    "firstRegistrationDate": "2021-02",
+    "mileage": "78.000 km",
+    "fuelType": "Diesel",
+    "gearType": "Automatisk",
+    "locationLat": 55.744602,
+    "locationLon": 9.584339,
+    "locationCity": "Tønder",
+    "locationRegion": "Syd- og Sønderjylland",
+    "sellerName": "KJ Biler",
+    "sellerType": "Dealer",
+    "sellerCity": "Tønder",
+    "sellerZipCode": 6270,
+    "images": ["https://billeder.bilbasen.dk/..."],
+    "imagesCount": 24,
+    "scrapedAt": "2026-03-21T00:56:00.000Z"
+}
+```
+
+---
+
+## Try this example query
+
+Paste this directly into the actor input and run:
+
+```json
+{
+    "make": "BMW",
+    "model": "3-Serien",
+    "yearFrom": 2020,
+    "priceTo": 400000,
+    "maxResults": 50,
+    "includeDetailPages": true
+}
+```
+
+Returns recent BMW 3-series listings from 2020+ under 400,000 DKK — with full specs, seller info, and geo coordinates.
+
+---
+
+## Quick start
+
+### Search by filters
+
+```json
+{
+    "make": "Audi",
+    "model": "A4",
+    "yearFrom": 2020,
+    "priceFrom": 100000,
+    "priceTo": 400000,
+    "maxResults": 50
+}
+```
+
+### Search by URL
+
+```json
+{
+    "startUrls": [{ "url": "https://www.bilbasen.dk/brugt/bil/bmw/3-serien?yearfrom=2019&pricetype=Retail" }],
+    "maxResults": 100,
+    "includeDetailPages": true
+}
+```
+
+### Fast list-only mode
+
+```json
+{
+    "make": "Toyota",
+    "maxResults": 200,
+    "includeDetailPages": false,
+    "compact": true
+}
+```
+
+---
+
+## Incremental mode — track new and changed listings
+
+Set up a scheduled run and receive only listings that are new or have changed since your last run. No duplicates, no re-processing.
+
+```json
+{
+    "make": "Tesla",
+    "model": "Model 3",
+    "maxResults": 0,
+    "includeDetailPages": true,
+    "incremental": true
+}
+```
+
+State is stored in a named Apify KV store and persists across runs. First run outputs everything — subsequent runs output only changes.
+
+---
+
+## Input parameters
+
+### Search
+
+| Parameter | Type | Description |
+|:----------|:-----|:------------|
+| `startUrls` | array | One bilbasen.dk search URL per run. Optional if filter params are set. |
+| `make` | string | Car make (e.g. "Audi", "BMW", "Toyota") |
+| `model` | string | Car model (e.g. "A4", "3-Serien"). Requires `make`. |
+| `yearFrom` | integer | Minimum model year |
+| `yearTo` | integer | Maximum model year |
+| `priceFrom` | integer | Minimum price in DKK |
+| `priceTo` | integer | Maximum price in DKK |
+| `maxResults` | integer | Maximum listings to return (0 = unlimited, default: 100) |
+
+### Output control
+
+| Parameter | Type | Description |
+|:----------|:-----|:------------|
+| `includeDetailPages` | boolean | Fetch full detail for each listing (default: true) |
+| `compact` | boolean | Return only 10 core fields (default: false) |
+| `descriptionMaxLength` | integer | Truncate description to N characters |
+| `incremental` | boolean | Only output new/changed listings (default: false) |
+| `imagesMode` | string | `"first3"` or `"all"` image URLs (default: "first3") |
+
+### Proxy & performance
+
+| Parameter | Type | Description |
+|:----------|:-----|:------------|
+| `proxyConfiguration` | object | Apify proxy config (strongly recommended) |
+| `maxConcurrency` | integer | Max concurrent requests (default: 5) |
+| `maxRequestRetries` | integer | Retries per request (default: 3) |
+| `maxPages` | integer | Max search result pages (default: 200) |
+
+---
+
+## Output fields
+
+### Vehicle
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `make` | string | Car make (e.g. "Audi") |
+| `model` | string | Car model (e.g. "A4") |
+| `variant` | string | Full variant name |
+| `year` | number | Model year |
+| `firstRegistrationDate` | string | First registration in ISO format (e.g. "2021-02") |
+| `mileage` | string | Mileage as displayed (e.g. "78.000 km") |
+| `fuelType` | string | Fuel type (e.g. "Diesel", "Benzin", "El") |
+| `gearType` | string | Gear type (e.g. "Automatisk", "Manuel") |
+| `horsepower` | string | Engine output (e.g. "190 hk/400 nm") |
+| `color` | string | Color |
+| `doors` | number | Number of doors |
+
+### Pricing
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `price` | number | Price from search page (numeric) |
+| `priceAmount` | number | Price parsed from detail page |
+| `priceText` | string | Price as displayed (e.g. "329.800 kr.") |
+
+### Location
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `locationLat` | number | Latitude |
+| `locationLon` | number | Longitude |
+| `locationCity` | string | City |
+| `locationZipCode` | number | Zip code |
+| `locationRegion` | string | Region (e.g. "Østjylland") |
+
+### Seller
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `sellerName` | string | Dealer or private seller name |
+| `sellerType` | string | "Dealer" or "Private" |
+| `sellerAddress` | string | Full address |
+| `sellerCity` | string | City |
+| `sellerZipCode` | number | Zip code |
+| `sellerPhone` | string | Phone (when available) |
+
+### Content & metadata
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `url` | string | Listing URL |
+| `portalUrl` | string | Portal listing URL |
+| `title` | string | Listing title |
+| `description` | string | Full listing description |
+| `features` | string[] | Feature highlights parsed from description |
+| `images` | string[] | Image URLs |
+| `imagesCount` | number | Total images available |
+| `externalId` | number | Bilbasen listing ID |
+| `scrapedAt` | string | ISO 8601 timestamp |
+
+---
+
+## Bilbasen car data & scraping
+
+This actor provides structured access to bilbasen.dk car listing data. Common use cases include:
+
+- **Bilbasen API** — query car listings programmatically without a browser
+- **Bilbasen car data extraction** — download make, model, price, specs, and seller data at scale
+- **Danish used car market dataset** — build datasets for research, analytics, or automotive platforms
+- **Bilbasen price monitoring** — track price changes on specific models with incremental mode
+- **Car dealership scraper** — collect dealer inventory and pricing across Denmark
+- **Bilbasen dataset** — create reusable datasets for analytics, research, or data lake ingestion
+
+---
+
+## Frequently asked questions
+
+**Is this a Bilbasen API?**
+Bilbasen does not offer a public API for car listing data. This actor provides programmatic access to bilbasen.dk listings through web scraping and returns structured JSON — effectively acting as a Bilbasen API for your application.
+
+**How many listings can I scrape?**
+Bilbasen has 50,000+ active listings. Set `maxResults: 0` for unlimited. The actor handles pagination automatically across all search result pages.
+
+**Does it return geo coordinates?**
+Yes. Every listing includes latitude, longitude, city, zip code, and region — ready for map visualizations and geographic analysis.
+
+**How does smart input resolution work?**
+Type "VW" and the actor automatically resolves it to "Volkswagen" for the correct bilbasen URL. Same for "Mercedes" → "Mercedes-Benz", "Alfa" → "Alfa Romeo", and other common aliases.
+
+**Can I use it for price monitoring?**
+Yes. Enable `incremental: true` and schedule the actor to run daily or hourly. Each run returns only new or changed listings — ideal for detecting price drops.
+
+**Does it work without proxy?**
+It can, but bilbasen.dk uses WAF protection. Apify Proxy is strongly recommended for reliable operation.
+
+---
+
+## Known limitations
+
+- Proxy strongly recommended — bilbasen.dk uses WAF/CDN protection
+- One search per run — use one URL or one set of filter parameters per run
+- No email data — bilbasen does not expose seller email addresses
+- Geo data is from search page — detail pages do not include coordinates
+- Sponsored/promoted listings may appear first in results regardless of search filters
+
+---
+
+## Related products by Black Falcon Data
+
+| Product | Description |
+|:--------|:------------|
+| [StepStone Jobs API](https://github.com/BlackFalconData-org/stepstone-jobs-api) | Job listings from 18 European portals |
+| [Company Jobs Tracker](https://github.com/BlackFalconData-org/company-jobs-tracker-api) | Track new/removed jobs per company |
+| [Indeed Jobs Feed](https://github.com/BlackFalconData-org/indeed-jobs-feed) | Indeed job listings with salary data |
+| [Glassdoor Jobs Feed](https://github.com/BlackFalconData-org/glassdoor-jobs-feed) | Glassdoor listings with company ratings |
+| [Arbeitsagentur Jobs Feed](https://github.com/BlackFalconData-org/arbeitsagentur-jobs-feed) | Germany's federal job portal (1M+ listings) |
+| [Naukri Jobs Feed](https://github.com/BlackFalconData-org/naukri-jobs-feed) | India's largest job portal |
+
+---
+
+*Last updated: March 2026*
