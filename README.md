@@ -1,4 +1,4 @@
-# Bilbasen Scraper — Car Listings from Denmark's Largest Marketplace
+# Bilbasen Scraper
 
 Extract structured car listings from [bilbasen.dk](https://www.bilbasen.dk) — Denmark's largest used car marketplace with 50,000+ active listings.
 
