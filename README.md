@@ -6,7 +6,7 @@ Get clean JSON with price, specs, images, seller info, geo coordinates, and full
 
 Built for car market analytics, price monitoring, dealership intelligence, and automotive data pipelines.
 
-**[Run on Apify →](https://apify.com/blackfalcondata/bilbasen)**
+**[Run on Apify →](https://apify.com/blackfalcondata/bilbasen-scraper)**
 
 ---
 
