@@ -295,7 +295,7 @@ This actor provides structured access to bilbasen.dk car listing data. Common us
 ## Frequently asked questions
 
 **Is this a Bilbasen API?**
-Bilbasen does not offer a public API for car listing data. This actor provides programmatic access to bilbasen.dk listings through web scraping and returns structured JSON — effectively acting as a Bilbasen API for your application.
+Bilbasen does not offer a structured data export. This actor provides programmatic access to bilbasen.dk listings and returns structured JSON — effectively acting as a Bilbasen API for your application.
 
 **How many listings can I scrape?**
 Bilbasen has 50,000+ active listings. Set `maxResults: 0` for unlimited. The actor handles pagination automatically across all search result pages.
