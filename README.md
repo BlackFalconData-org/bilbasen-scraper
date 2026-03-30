@@ -6,68 +6,29 @@ Get clean JSON with price, specs, images, seller info, geo coordinates, and full
 
 Built for car market analytics, price monitoring, dealership intelligence, and automotive data pipelines.
 
-**[Run on Apify →](https://apify.com/blackfalcondata/bilbasen-scraper)**
+**[Bilbasen Scraper on Apify →](https://apify.com/blackfalcondata/bilbasen-scraper)**
 
 ---
 
 ## Key features
 
-🔍 **Smart search with filters**
 
-- Search by make, model, year range, and price range — no need to build URLs manually
-- Smart input resolution: "VW" → "Volkswagen", "Mercedes" → "Mercedes-Benz"
-- Or provide any bilbasen.dk search URL for full control
 
-🚗 **Rich vehicle data**
+**Incremental mode** — Only get new or changed listings since your last run. Content hash per listing — no duplicates, no re-processing.
 
-- Make, model, variant, year, mileage, fuel type, gear type, horsepower, color, doors
-- Price from search page + parsed price from detail page
-- Full listing description with feature extraction
-
-📍 **Geo-ready output**
-
-- Latitude, longitude, city, zip code, and region for every listing
-- Ready for map visualizations and geographic analysis
-
-🔄 **Incremental mode**
-
-- Only get new or changed listings since your last run
-- Content hash per listing — no duplicates, no re-processing
-- Ideal for scheduled monitoring and price tracking
-
-⚡ **Compact output for AI agents**
-
-- 10-field compact mode optimized for MCP and AI agent workflows
-- Description truncation to control output size
-- Deterministic, consistent field naming across all items
-
-📊 **Detail enrichment**
-
-- Optional detail page fetching for full specs, seller info, and images
-- Flat top-level fields for easy consumption + full nested data for advanced use cases
-- WAF-hardened with automatic retries and session management
+**Structured data** — 40 fields per listing. Clean JSON output with consistent field naming. All fields always present — null when unavailable, never omitted.
 
 ---
 
 ## Use cases
 
-**Car price monitoring**
-Track price changes on specific models over time. Use incremental mode to detect price drops on listings you're watching. Build alerts when a target car hits your price range.
 
-**Dealership intelligence**
-Collect dealer inventory, pricing strategy, and geographic coverage. Identify which dealers carry specific makes and models. Monitor competitor pricing across regions.
 
-**Market analytics**
-Analyze the Danish used car market: price distributions by make/model/year, regional price differences, fuel type trends, average time on market. Feed into dashboards or data warehouses.
+**Data pipeline automation**
+Integrate with your ETL pipeline to collect structured listings from bilbasen.dk on a schedule. Export to CSV, JSON, or directly to your database. Use compact mode to control output size.
 
-**Lead generation for automotive services**
-Find car owners and dealers by location, car type, and price range. Target high-value listings for financing, insurance, or service offers.
-
-**Academic & economic research**
-Download structured datasets for research on consumer behavior, depreciation curves, electric vehicle adoption, and regional economic indicators.
-
-**Data pipeline integration**
-Feed bilbasen data into BigQuery, Snowflake, or your data lake. Use incremental mode to get only new records — no re-processing of old listings.
+**Market research**
+Monitor listings, track trends, and analyze market dynamics with structured, deduplicated data from bilbasen.dk.
 
 ---
 
@@ -326,14 +287,11 @@ It can, but bilbasen.dk uses WAF protection. Apify Proxy is strongly recommended
 
 ## Related products by Black Falcon Data
 
-| Product | Description |
-|:--------|:------------|
-| [StepStone Jobs API](https://github.com/BlackFalconData-org/stepstone-jobs-api) | Job listings from 18 European portals |
-| [Company Jobs Tracker](https://github.com/BlackFalconData-org/company-jobs-tracker-api) | Track new/removed jobs per company |
-| [Indeed Jobs Feed](https://github.com/BlackFalconData-org/indeed-jobs-feed) | Indeed job listings with salary data |
-| [Glassdoor Jobs Feed](https://github.com/BlackFalconData-org/glassdoor-jobs-feed) | Glassdoor listings with company ratings |
-| [Arbeitsagentur Jobs Feed](https://github.com/BlackFalconData-org/arbeitsagentur-jobs-feed) | Germany's federal job portal (1M+ listings) |
-| [Naukri Jobs Feed](https://github.com/BlackFalconData-org/naukri-jobs-feed) | India's largest job portal |
+
+
+- [mobile.de Scraper](https://github.com/BlackFalconData-org/mobile-de-scraper) — Germany's largest car marketplace
+- [StepStone Scraper](https://github.com/BlackFalconData-org/stepstone-scraper) — Job listings from 18 European portals
+- [Indeed Job Scraper](https://github.com/BlackFalconData-org/indeed-job-scraper) — Indeed job listings with salary data
 
 ---
 
