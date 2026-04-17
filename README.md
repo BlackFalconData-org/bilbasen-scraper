@@ -6,7 +6,7 @@ Get clean JSON with price, specs, images, seller info, geo coordinates, and full
 
 Built for car market analytics, price monitoring, dealership intelligence, and automotive data pipelines.
 
-**[Bilbasen Scraper on Apify →](https://apify.com/blackfalcondata/bilbasen-scraper)**
+**[Bilbasen Scraper - Denmark’s Car Marketplace on Apify →](https://apify.com/blackfalcondata/bilbasen-scraper)**
 
 ---
 
@@ -14,13 +14,15 @@ Built for car market analytics, price monitoring, dealership intelligence, and a
 
 
 
+
 **Incremental mode** — Only get new or changed listings since your last run. Content hash per listing — no duplicates, no re-processing.
 
-**Structured data** — 40 fields per listing. Clean JSON output with consistent field naming. All fields always present — null when unavailable, never omitted.
+**Structured data** — 84 fields per listing. Clean JSON output with consistent field naming. All fields always present — null when unavailable, never omitted.
 
 ---
 
 ## Use cases
+
 
 
 
@@ -286,6 +288,7 @@ It can, but bilbasen.dk uses WAF protection. Apify Proxy is strongly recommended
 ---
 
 ## Related products by Black Falcon Data
+
 
 
 
