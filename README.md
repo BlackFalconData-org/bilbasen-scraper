@@ -16,6 +16,7 @@ Built for car market analytics, price monitoring, dealership intelligence, and a
 
 
 
+
 **Incremental mode** — Only get new or changed listings since your last run. Content hash per listing — no duplicates, no re-processing.
 
 **Compact output** — Emit core fields only (AI-agent / MCP-friendly). Keeps response size small for LLM workflows.
@@ -33,6 +34,7 @@ Built for car market analytics, price monitoring, dealership intelligence, and a
 ---
 
 ## Use cases
+
 
 
 
@@ -353,6 +355,7 @@ See the [actor on Apify](https://apify.com/blackfalcondata/bilbasen-scraper?fpr=
 
 
 
+
 - [mobile.de Scraper](https://apify.com/blackfalcondata/mobile-de-scraper?fpr=1h3gvi) — Germany's largest car marketplace
 - [StepStone Scraper](https://apify.com/blackfalcondata/stepstone-scraper?fpr=1h3gvi) — Job listings from 18 European portals
 - [Indeed Job Scraper](https://apify.com/blackfalcondata/indeed-job-scraper?fpr=1h3gvi) — Indeed job listings with salary data
@@ -360,6 +363,14 @@ See the [actor on Apify](https://apify.com/blackfalcondata/bilbasen-scraper?fpr=
 - [Arbeitsagentur Scraper](https://apify.com/blackfalcondata/arbeitsagentur-scraper?fpr=1h3gvi) — Germany's official job portal (1M+ listings)
 - [SEEK Scraper](https://apify.com/blackfalcondata/seek-scraper?fpr=1h3gvi) — Australia & NZ's largest job board
 
+---
+
+
+## About Black Falcon Data
+
+Black Falcon Data builds production-grade web scrapers for job boards and marketplace data. Browse our full actor catalog at [www.blackfalcondata.com](https://www.blackfalcondata.com).
+
+---
 
 ## Getting started with Apify
 
@@ -373,12 +384,6 @@ Need more volume? [See pricing](https://apify.com/pricing?fpr=1h3gvi).
 
 ---
 
-
-## About Black Falcon Data
-
-Black Falcon Data builds production-grade web scrapers for job boards and marketplace data. Browse our full actor catalog at [www.blackfalcondata.com](https://www.blackfalcondata.com).
-
----
 ---
 
 *Last updated: March 2026*
