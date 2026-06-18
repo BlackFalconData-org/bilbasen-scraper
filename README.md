@@ -8,6 +8,21 @@ Built for car market analytics, price monitoring, dealership intelligence, and a
 
 **[Bilbasen Scraper - Denmark’s Car Marketplace on Apify →](https://apify.com/blackfalcondata/bilbasen-scraper?fpr=1h3gvi)**
 
+
+## 🚀 How to use this actor
+
+> ### 💚 $5 free Apify credits — every month
+> No credit card required. No commitment. Cancel anytime.
+
+### 👉 [Sign up free on Apify →](https://console.apify.com/sign-up?fpr=1h3gvi)
+
+1. **Click sign up** — pick GitHub, Google, or email; takes ~30 seconds
+2. **Open this actor** — input is pre-filled with a working example
+3. **Click Start** — export results as JSON, CSV, or Excel
+
+Your **$5 monthly platform credit** is enough to run this actor right away — and again every month — scraping typically several hundred to several thousand results per run, depending on your input.
+
+
 ---
 
 ## Key features
@@ -17,7 +32,10 @@ Built for car market analytics, price monitoring, dealership intelligence, and a
 
 
 
+
 **Incremental mode** — Only get new or changed listings since your last run. Content hash per listing — no duplicates, no re-processing.
+
+**Change classification** — Track expired across runs. Build audit trails of how listings evolve over time.
 
 **Compact output** — Emit core fields only (AI-agent / MCP-friendly). Keeps response size small for LLM workflows.
 
@@ -34,6 +52,7 @@ Built for car market analytics, price monitoring, dealership intelligence, and a
 ---
 
 ## Use cases
+
 
 
 
@@ -356,12 +375,13 @@ See the [actor on Apify](https://apify.com/blackfalcondata/bilbasen-scraper?fpr=
 
 
 
+
 - [mobile.de Scraper](https://apify.com/blackfalcondata/mobile-de-scraper?fpr=1h3gvi) — Germany's largest car marketplace
 - [StepStone Scraper](https://apify.com/blackfalcondata/stepstone-scraper?fpr=1h3gvi) — Job listings from 18 European portals
 - [Indeed Job Scraper](https://apify.com/blackfalcondata/indeed-job-scraper?fpr=1h3gvi) — Indeed job listings with salary data
+- [LinkedIn Jobs Scraper](https://apify.com/blackfalcondata/linkedin-jobs-scraper?fpr=1h3gvi) — World's largest professional network — global job listings, no login required
 - [Glassdoor Job Scraper](https://apify.com/blackfalcondata/glassdoor-job-scraper?fpr=1h3gvi) — Glassdoor listings with company ratings
 - [Arbeitsagentur Scraper](https://apify.com/blackfalcondata/arbeitsagentur-scraper?fpr=1h3gvi) — Germany's official job portal (1M+ listings)
-- [SEEK Scraper](https://apify.com/blackfalcondata/seek-scraper?fpr=1h3gvi) — Australia & NZ's largest job board
 
 ---
 
