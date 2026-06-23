@@ -23,9 +23,25 @@ Built for car market analytics, price monitoring, dealership intelligence, and a
 Your **$5 monthly platform credit** is enough to run this actor right away — and again every month — scraping typically several hundred to several thousand results per run, depending on your input.
 
 
+
+## 🚀 How to use this actor
+
+> ### 💚 $5 free Apify credits — every month
+> No credit card required. No commitment. Cancel anytime.
+
+### 👉 [Sign up free on Apify →](https://console.apify.com/sign-up?fpr=1h3gvi)
+
+1. **Click sign up** — pick GitHub, Google, or email; takes ~30 seconds
+2. **Open this actor** — input is pre-filled with a working example
+3. **Click Start** — export results as JSON, CSV, or Excel
+
+Your **$5 monthly platform credit** is enough to run this actor right away — and again every month — scraping typically several hundred to several thousand results per run, depending on your input.
+
+
 ---
 
 ## Key features
+
 
 
 
@@ -52,6 +68,7 @@ Your **$5 monthly platform credit** is enough to run this actor right away — a
 ---
 
 ## Use cases
+
 
 
 
@@ -369,6 +386,7 @@ See the [actor on Apify](https://apify.com/blackfalcondata/bilbasen-scraper?fpr=
 ---
 
 ## Related products by Black Falcon Data
+
 
 
 
